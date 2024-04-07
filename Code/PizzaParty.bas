@@ -52,8 +52,8 @@ end
 
  drawscreen
  
- if joy0fire then COLUBK = 30
- if joy1fire then COLUBK = 20
+ if joy0fire then a = a + 1
+ if joy1fire then b = b + 1
  
  t = t - 1
  if t = 0 then goto roll
@@ -89,21 +89,46 @@ end
 end
 
  drawscreen
+ if a <= 0 then goto result
+ if b <= 0 then goto result
  a = a - 1
  player0x = player0x + 1
- if b <= 0 then goto result
  b = b - 1
  player1x = player1x + 1
- if a <= 0 then goto result
+
  goto roll
 result
  COLUBK = 157
+ if r >= 5 && a <= 0 && b <= 0 then COLUBK = 30
+ if r <= 4 && a <= 0 && b <= 0 then COLUBK = 150
 
- if r >= 5 then if a = 0 then COLUP1 = 30
- if r <= 4 then if a = 0 then COLUP1 = 150
+ if r >= 5 && b <= 0 then COLUP0 = 30
+ if r <= 4 && b <= 0 then COLUP0 = 70
 
- if r >= 5 then if b = 0 then COLUP0 = 30
- if r <= 4 then if b = 0 then COLUP0 = 70
+ if r >= 5 && a <= 0 then COLUP1 = 30
+ if r <= 4 && a <= 0 then COLUP1 = 150
+
+ player0:
+ %00111100
+ %01110110
+ %10111111
+ %11011101
+ %11111111
+ %11101111
+ %01111010
+ %00111100
+end
+
+ player1:
+ %00111100
+ %01110110
+ %10111111
+ %11011101
+ %11111111
+ %11101111
+ %01111010
+ %00111100
+end
 
  if r = 0 then r = 11
  r = r - 1
